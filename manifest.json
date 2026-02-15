@@ -1,0 +1,26 @@
+{
+	"manifest_version": 3,
+	"name": "Neural Knight",
+	"version": "1.0",
+	"description": "Real-time chess analysis with evaluation bar and best move hints on Chess.com",
+	"permissions": ["storage", "activeTab", "tabs", "offscreen"],
+	"host_permissions": ["*://www.chess.com/*"],
+	"action": {
+		"default_popup": "popup.html"
+	},
+	"background": {
+		"service_worker": "background.js"
+	},
+	"icons": {
+		"48": "icon.png",
+		"128": "icon.png"
+	},
+	"content_scripts": [
+		{
+			"matches": ["https://www.chess.com/*"],
+			"js": ["chess.js", "content.js"],
+			"run_at": "document_idle",
+			"all_frames": true
+		}
+	]
+}
