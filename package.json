@@ -1,5 +1,6 @@
 {
   "devDependencies": {
+    "canvas": "^3.2.1",
     "sharp": "^0.34.5"
   }
 }
