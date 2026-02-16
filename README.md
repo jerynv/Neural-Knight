@@ -7,6 +7,8 @@
   <img src="https://img.shields.io/badge/Manifest-V3-blue" alt="Manifest V3">
 </p>
 
+> **⚠️ DISCLAIMER:** This extension was built purely for **educational purposes** because I was bored and wanted to learn about Chrome extension development, Stockfish integration, and Web Workers. If you actually use this to cheat in real chess games, you're a bum. Seriously, don't be that person. Use it to learn how chess engines work or analyze your own games after they're finished like a normal human being.
+
 ## Features
 
 - **Local Stockfish Engine** — Runs entirely in your browser via Web Worker. No external API dependencies.
@@ -19,6 +21,8 @@
 - **Native Detection** — Automatically hides the custom eval bar when Chess.com's built-in evaluation is active.
 
 ## Install
+
+> **Hey bum**, before you install this to cheat in your 800 ELO games, remember: this was made as a **coding exercise** while I was bored. It's meant for **learning purposes**, understanding engine evaluation, position analysis, and browser extension architecture. Using it to cheat makes you look pathetic. Analyze your completed games, study positions, or just appreciate the technical implementation. Don't be a loser.
 
 1. Clone or download this repository
 2. Open `chrome://extensions/` in Chrome
@@ -58,6 +62,24 @@ Chess.com move list → content.js extracts moves → chess.js generates FEN
 - `storage` — Save user preferences
 - `activeTab` / `tabs` — Communicate with chess.com tabs
 - `offscreen` — Run Stockfish Web Worker (MV3 restriction)
+
+## Educational Purpose Statement
+
+This project exists because I was bored and wanted to explore:
+- Chrome Manifest V3 architecture and offscreen documents
+- Stockfish UCI protocol implementation in JavaScript
+- Real-time DOM manipulation and chess board detection
+- Web Worker performance optimization
+
+**If you're using this to cheat:** Congrats, you're a bum. You're literally letting a computer play for you while pretending you're good at chess. That's sad. Chess.com has anti-cheat detection, you'll probably get banned, and everyone will know you're a fraud.
+
+**Legitimate uses:** 
+- Study the codebase to learn extension development
+- Analyze your own completed games
+- Understand how chess engines evaluate positions
+- Educational research on chess AI
+
+Don't be a bum. Play your own games.
 
 ## License
 
