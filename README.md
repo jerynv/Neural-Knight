@@ -54,8 +54,8 @@ Chess.com move list → content.js extracts moves → chess.js generates FEN
 | Setting | Range | Default | Description |
 |---------|-------|---------|-------------|
 | Depth | 8–24 | 14 | Search depth. Higher = stronger but slower |
-| Threads | 1–16 | 1 | CPU cores for the engine |
-| Hash | 16–1024 MB | 16 | Memory allocated for position cache |
+| Threads | 1–16 | 4 | CPU cores for the engine |
+| Hash | 16–1024 MB | 256 | Memory allocated for position cache |
 
 ## Permissions
 

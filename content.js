@@ -48,6 +48,7 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
     } else {
         sendResponse({});
     }
+    return true; // Keep message channel open for async responses
 });
 
 // --- Eval Bar ---
@@ -236,12 +237,24 @@ function addDot(coord) {
 function analyzePosition(fen, depth) {
     if (!analysisEnabled || fen === previousFen) return;
 
+    console.log('[Neural Knight] Analyzing position:', fen.substring(0, 30) + '...', 'depth:', depth);
+
     try {
         chrome.runtime.sendMessage({ action: 'analyze', fen, depth }, (response) => {
-            if (chrome.runtime.lastError || !response) return;
+            if (chrome.runtime.lastError) {
+                console.error('[Neural Knight] Analysis failed:', chrome.runtime.lastError.message);
+                return;
+            }
+            if (!response) {
+                console.warn('[Neural Knight] No response from background');
+                return;
+            }
+            console.log('[Neural Knight] Analysis received:', response);
             handleAnalysis(response, fen);
         });
-    } catch (_) {}
+    } catch (err) {
+        console.error('[Neural Knight] Exception in analyzePosition:', err);
+    }
 }
 
 function handleAnalysis(data, fen) {
@@ -336,11 +349,22 @@ function observeMoveList(onload = false) {
 // --- Init ---
 
 function init() {
+    console.log('[Neural Knight] Initializing on Chess.com...');
     injectEvalBar();
     const poll = setInterval(() => {
         if (document.querySelector(MOVE_LIST_SEL)) {
+            console.log('[Neural Knight] Move list found, starting observer');
             observeMoveList(true);
             clearInterval(poll);
         }
     }, 1000);
+    
+    // Verify extension connection
+    setTimeout(() => {
+        if (!chrome.runtime?.id) {
+            console.error('[Neural Knight] Extension context invalidated!');
+        } else {
+            console.log('[Neural Knight] Extension initialized successfully, ID:', chrome.runtime.id);
+        }
+    }, 500);
 }

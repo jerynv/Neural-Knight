@@ -1,4 +1,4 @@
-const DEFAULTS = { depth: 14, threads: 1, hash: 16 };
+const DEFAULTS = { depth: 14, threads: 4, hash: 256 };
 
 document.addEventListener('DOMContentLoaded', async () => {
     const tabs = await chrome.tabs.query({ active: true, currentWindow: true });
